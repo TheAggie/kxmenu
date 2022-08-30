@@ -167,8 +167,8 @@ typedef enum {
         self.opaque = YES;
         self.alpha = 0;
         
-        self.layer.shadowOpacity = 0.5;
-        self.layer.shadowOffset = CGSizeMake(2, 2);
+        self.layer.shadowOpacity = 0.3;
+        self.layer.shadowOffset = CGSizeMake(1, 1);
         self.layer.shadowRadius = 2;
     }
     
@@ -497,7 +497,7 @@ typedef enum {
             titleLabel.text = menuItem.title;
             titleLabel.font = titleFont;
             titleLabel.textAlignment = menuItem.alignment;
-            titleLabel.textColor = menuItem.foreColor ? menuItem.foreColor : [UIColor whiteColor];
+            titleLabel.textColor = menuItem.foreColor ? menuItem.foreColor : [UIColor darkGrayColor];
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.autoresizingMask = UIViewAutoresizingNone;
             //titleLabel.backgroundColor = [UIColor greenColor];
@@ -509,6 +509,7 @@ typedef enum {
             const CGRect imageFrame = {kMarginX * 2, kMarginY, maxImageWidth, maxItemHeight - kMarginY * 2};
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
             imageView.image = menuItem.image;
+            imageView.tintColor = menuItem.foreColor?menuItem.foreColor:[UIColor grayColor];
             imageView.clipsToBounds = YES;
             imageView.contentMode = UIViewContentModeCenter;
             imageView.autoresizingMask = UIViewAutoresizingNone;
@@ -566,8 +567,16 @@ typedef enum {
 {
     const CGFloat locations[] = {0,1};
     const CGFloat components[] = {
-        0.216, 0.471, 0.871, 1,
-        0.059, 0.353, 0.839, 1,
+                0.8, 0.8, 0.8, 1,
+                0.8, 0.8, 0.8, 1,
+//        0.89, 0.0, 0.02, 1,
+//        0.89, 0.0, 0.02, 1,
+//        
+//        0.86, 0.15, 0.17, 1,
+//        0.86, 0.15, 0.17, 1,
+        
+//        0.216, 0.471, 0.871, 1,
+//        0.059, 0.353, 0.839, 1,
     };
     
     return [self gradientImageWithSize:size locations:locations components:components count:2];
@@ -577,7 +586,7 @@ typedef enum {
 {
     const CGFloat locations[5] = {0,0.2,0.5,0.8,1};
     
-    const CGFloat R = 0.44f, G = 0.44f, B = 0.44f;
+    const CGFloat R = 0.96f, G = 0.96f, B = 0.96f;
         
     const CGFloat components[20] = {
         R,G,B,0.1,
@@ -618,8 +627,11 @@ typedef enum {
 - (void)drawBackground:(CGRect)frame
              inContext:(CGContextRef) context
 {
-    CGFloat R0 = 0.267, G0 = 0.303, B0 = 0.335;
-    CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
+    //CGFloat R0 = 0.267, G0 = 0.303, B0 = 0.335;
+    //CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
+    
+    CGFloat R0 = 0.96, G0 = 0.96, B0 = 0.96;
+    CGFloat R1 = 0.96, G1 = 0.96, B1 = 0.96;
     
     UIColor *tintColor = [KxMenu tintColor];
     if (tintColor) {
@@ -716,10 +728,12 @@ typedef enum {
     const CGRect bodyFrame = {X0, Y0, X1 - X0, Y1 - Y0};
     
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:bodyFrame
-                                                          cornerRadius:8];
+                                                          cornerRadius:2];
         
     const CGFloat locations[] = {0, 1};
     const CGFloat components[] = {
+//        0.1, 0.1, 0.1, 1,
+//        0.1, 0.1, 0.1, 1,
         R0, G0, B0, 1,
         R1, G1, B1, 1,
     };
